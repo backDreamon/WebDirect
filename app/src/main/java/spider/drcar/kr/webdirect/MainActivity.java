@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         // WebViewClient 지정
         wb.setWebViewClient(new WebViewClient() {
+            // https ssl 무시 강제시행
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
 
@@ -74,12 +75,12 @@ public class MainActivity extends AppCompatActivity {
         // 웹뷰에서 플러그인 허용
         wb.getSettings().setSupportZoom(true);
 
-
+        // 웹뷰 캐시 사용
         wb.getSettings().setAppCacheEnabled(true);
-        wb.getSettings().setDatabaseEnabled(true);
-        //wb.getSettings().setDomStorageEnabled(true);
+
 
         wb.setWebChromeClient(new WebChromeClient() {
+            // 자바스크립트 Alert 창 다이얼로그로 재생성
             @Override
             public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
                 new AlertDialog.Builder(MainActivity.this)
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 return super.onJsConfirm(view, url, message, result);
             }*/
 
+            // GPS 요청 응답
             @Override
             public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
 
